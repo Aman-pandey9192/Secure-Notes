@@ -1,55 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Secure Notes - Login</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Secure Notes</h2>
-    <p>Are you a new user or existing user?</p>
-    <button onclick="showNewUserForm()">New User</button>
-    <button onclick="showLoginForm()">Existing User</button>
+    <div class="card-container">
+        <div class="left-panel">
+            <div class="illustration-container" aria-hidden="true">
+                <i class="fas fa-lock lock-icon"></i>
+                <i class="far fa-file-alt" style="font-size: 60px; color: var(--text-color); opacity: 0.85; position: relative; top: -70px; left: -10px; background-color: #E0E7FF; padding: 6px; border-radius: 6px;"></i>
+            </div>
+            <p class="slogan">Your thoughts, safely stored.</p>
+        </div>
+        <div class="right-panel">
+            <div class="header">
+                <i class="fas fa-shield-alt logo-icon" aria-hidden="true"></i>
+                <span class="app-name">Secure Notes</span>
+            </div>
+            <div class="content">
+                <h1 class="welcome-title">Welcome to Secure Notes</h1>
+                <p class="question-text">Are you a new user or existing user?</p>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="showNewUserForm()">New User</button>
+                    <button class="btn btn-outline" onclick="showLoginForm()">Existing User</button>
+                </div>
 
-    <!-- New User Registration -->
-    <div id="new-user-form" class="hidden">
-      <h3>Register</h3>
-      <input type="text" id="new-username" placeholder="Username" />
-      <input type="password" id="new-password" placeholder="Password" />
-      <select id="new-timer">
-        <option value="600000">10 minutes</option>
-        <option value="86400000">1 day</option>
-        <option value="604800000">1 week</option>
-        <option value="2592000000">1 month</option>
-        <option value="7776000000">3 months</option>
-        <option value="15552000000">6 months</option>
-        <option value="31536000000" selected>1 year</option>
-      </select>
-      <button onclick="registerUser()">Register</button>
+                <!-- New User Registration -->
+                <div id="new-user-form" class="form-panel hidden" aria-hidden="true">
+                  <div class="mb-2"><strong>Create account</strong></div>
+                  <input id="new-username" class="form-control" placeholder="Username"/>
+                  <input id="new-password" type="password" class="form-control" placeholder="Password"/>
+                  <label class="form-label small">Expiry timer</label>
+                  <select id="new-timer" class="form-control">
+                    <option value="600000">10 minutes</option>
+                    <option value="86400000">1 day</option>
+                    <option value="604800000">1 week</option>
+                    <option value="2592000000">1 month</option>
+                    <option value="7776000000">3 months</option>
+                    <option value="15552000000">6 months</option>
+                    <option value="31536000000" selected>1 year</option>
+                  </select>
+                  <div class="d-flex gap-2" style="margin-top:12px;">
+                    <button class="btn btn-primary" onclick="registerUser()">Register</button>
+                    <button class="btn btn-outline" onclick="document.getElementById('new-user-form').classList.add('hidden')">Cancel</button>
+                  </div>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form" class="form-panel hidden" aria-hidden="true">
+                  <div class="mb-2"><strong>Login</strong></div>
+                  <input id="login-username" class="form-control" placeholder="Username"/>
+                  <input id="login-password" type="password" class="form-control" placeholder="Password (leave blank to check timer)"/>
+                  <label class="form-label small">Reset expiry to</label>
+                  <select id="login-timer" class="form-control">
+                    <option value="600000">10 minutes</option>
+                    <option value="86400000">1 day</option>
+                    <option value="604800000">1 week</option>
+                    <option value="2592000000">1 month</option>
+                    <option value="7776000000">3 months</option>
+                    <option value="15552000000">6 months</option>
+                    <option value="31536000000" selected>1 year</option>
+                  </select>
+                  <div class="d-flex gap-2" style="margin-top:12px;">
+                    <button class="btn btn-primary" onclick="loginUser()">Login</button>
+                    <button class="btn btn-outline" onclick="document.getElementById('login-form').classList.add('hidden')">Cancel</button>
+                  </div>
+                  <div id="message" class="mt-2 small text-danger" role="status" aria-live="polite"></div>
+                  <div id="countdown-text" class="mt-2 small text-muted" aria-hidden="true"></div>
+                </div>
+
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
     </div>
 
-    <!-- Existing User Login -->
-    <div id="login-form" class="hidden">
-      <h3>Login</h3>
-      <input type="text" id="login-username" placeholder="Username" />
-      <input type="password" id="login-password" placeholder="Password" />
-      <select id="login-timer">
-        <option value="600000">10 minutes</option>
-        <option value="86400000">1 day</option>
-        <option value="604800000">1 week</option>
-        <option value="2592000000">1 month</option>
-        <option value="7776000000">3 months</option>
-        <option value="15552000000">6 months</option>
-        <option value="31536000000" selected>1 year</option>
-      </select>
-      <button onclick="loginUser()">Login</button>
-      <p id="countdown-text"></p>
-    </div>
-
-    <p id="message"></p>
-  </div>
-  <script src="script.js"></script>
+    <script src="static/js/script.js"></script>
 </body>
 </html>
