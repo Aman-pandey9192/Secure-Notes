@@ -1,4 +1,4 @@
- two-page secure note-taking web application that allows users to store, view, and manage their personal notes with time-bound password protection.
+ Two-page secure note-taking web application that allows users to store, view, and manage their personal notes with time-bound password protection.
 
 🚀 Features
 Two User Modes:
