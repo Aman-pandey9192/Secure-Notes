@@ -32,8 +32,5 @@ _List of all saved notes — click a title to view a note._
 ![Save Note](Implementation/save_notes.png)  
 _Form for creating or saving a new note with title and content._
 
-### 🗑️ Deletion Confirmation  
-![Deletion Confirmation](Implementation/Deletion_confirmation.png)  
-_Confirmation dialog before deleting a note._
 
 
